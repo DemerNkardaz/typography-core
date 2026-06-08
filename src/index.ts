@@ -10,6 +10,7 @@ import {
 import { protect, unprotect } from '@yalla/typography-rules/helpers';
 
 import type { ResolvedCoreConfig } from './types';
+export * from './factory';
 export type * from './types';
 
 export function initRules(config: ResolvedCoreConfig): void {
