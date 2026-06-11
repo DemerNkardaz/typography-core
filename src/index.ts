@@ -63,7 +63,7 @@ export function applyRules(
 	const rules = getWeightedRules(key);
 	if (rules.length === 0) return text;
 
-	const [initialProtectedValue, protectedMatches] = protect(text);
+	const [initialProtectedValue, protectedMatches] = protect(text, key);
 	let value = initialProtectedValue;
 
 	for (const item of rules) {
