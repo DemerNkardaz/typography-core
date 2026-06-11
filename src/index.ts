@@ -3,6 +3,7 @@ import {
 	initTypographyRules,
 	initMarkupRules,
 	isRuleDisabled,
+	ALIAS,
 	type FunctionRule,
 	type RegExpReplaceRule,
 	type RegExpTransformRule,
@@ -58,7 +59,8 @@ export function applyRules(
 	locale: string,
 	config: Pick<ResolvedCoreConfig, 'logs'>
 ): string {
-	const rules = getWeightedRules(locale);
+	const key = ALIAS.resolve(locale) ?? locale;
+	const rules = getWeightedRules(key);
 	if (rules.length === 0) return text;
 
 	const [initialProtectedValue, protectedMatches] = protect(text);

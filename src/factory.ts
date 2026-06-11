@@ -1,3 +1,4 @@
+import { ALIAS } from '@yalla/typography-rules';
 import { initRules } from '.';
 import type { ResolvedCoreConfig, TypographyCoreOptions } from './types';
 
@@ -20,10 +21,10 @@ export function createTypographyPlugin<TOptions extends TypographyCoreOptions, T
 			...options,
 		} as ResolvedCoreConfig;
 
-		const config = resolved as TOptions & ResolvedCoreConfig;
+		resolved.locale = ALIAS.resolve(resolved.locale) ?? resolved.locale;
 
 		initRules(resolved);
 
-		return factory.createHandler(config);
+		return factory.createHandler(resolved as TOptions & ResolvedCoreConfig);
 	};
 }
