@@ -1,4 +1,4 @@
-import { ALIAS } from '@yalla/typography-rules';
+import { ALIAS } from '@nkardaz/typography-rules';
 import { initRules } from '.';
 import type { ResolvedCoreConfig, TypographyCoreOptions } from './types';
 

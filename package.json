@@ -1,7 +1,7 @@
 {
-  "name": "@yalla/typography-core",
-  "version": "1.0.0",
-  "description": "Your package description here",
+  "name": "@nkardaz/typography-core",
+  "version": "1.0.1",
+  "description": "Common core for @nkardaz typography plugins",
   "license": "MIT",
   "author": "Yalla Nkardaz",
   "keywords": [
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/DemerNkardaz/typography-core"
+    "url": "git+https://github.com/DemerNkardaz/typography-core.git"
   },
   "homepage": "https://github.com/DemerNkardaz/typography-core#readme",
   "bugs": {
@@ -32,13 +32,7 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": [
-    "dist",
-    "package.json",
-    "README.md",
-    "LICENSE"
-  ],
-  "bundleSizeLimit": 102400,
+  "bundleSizeLimit": 20480,
   "sideEffects": false,
   "engines": {
     "node": ">=24.0.0"
@@ -66,13 +60,12 @@
     "eslint-config-prettier": "^10.1.8",
     "knip": "^6.15.0",
     "prettier": "^3.0.0",
-    "tsup": "^8.5.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.1",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.8"
   },
   "dependencies": {
-    "@yalla/typography-rules": "file:../typography-rules"
+    "@nkardaz/typography-rules": "1.0.0"
   }
 }

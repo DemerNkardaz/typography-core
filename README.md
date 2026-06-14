@@ -1,19 +1,19 @@
-# @yalla/typography-core
+# @nkardaz/typography-core
 
 Framework-agnostic core for building typography plugins.
 Provides rule initialisation, string-phase processing, locale resolution,
 and a plugin factory — with no knowledge of any AST or framework.
 
-Used internally by [@yalla/remark-typography](https://github.com/DemerNkardaz/remark-typography)
+Used internally by [@nkardaz/remark-typography](https://github.com/DemerNkardaz/remark-typography)
 and intended as the foundation for any custom typography plugin built on
-[@yalla/typography-rules](https://github.com/DemerNkardaz/typography-rules).
+[@nkardaz/typography-rules](https://github.com/DemerNkardaz/typography-rules).
 
 ---
 
 ## Installation
 
 ```bash
-npm i -D @yalla/typography-core
+npm i -D @nkardaz/typography-core
 ```
 
 > **Requires Node.js ≥ 24.0.0**
@@ -22,7 +22,7 @@ npm i -D @yalla/typography-core
 
 ## Overview
 
-`@yalla/typography-core` does three things:
+`@nkardaz/typography-core` does three things:
 
 - **Initialises rules** — registers built-in and custom rule sets via `initRules`
 - **Processes strings** — applies all string-phase rules to a text value via `applyRules`
@@ -37,7 +37,7 @@ npm i -D @yalla/typography-core
 Registers rule sets based on the resolved config. Called once per plugin instantiation.
 
 ```typescript
-import { initRules } from '@yalla/typography-core';
+import { initRules } from '@nkardaz/typography-core';
 
 initRules({
   initTypographyRules: true,
@@ -49,8 +49,8 @@ initRules({
 ```
 
 Behaviour:
-- If `initTypographyRules` is `true` — calls `initTypographyRules()` from `@yalla/typography-rules`
-- If `initMarkupRules` is `true` — calls `initMarkupRules()` from `@yalla/typography-rules`
+- If `initTypographyRules` is `true` — calls `initTypographyRules()` from `@nkardaz/typography-rules`
+- If `initMarkupRules` is `true` — calls `initMarkupRules()` from `@nkardaz/typography-rules`
 - Runs each plugin in `plugins` as `plugin()()`
 
 ---
@@ -61,7 +61,7 @@ Applies all string-phase rules (`replace`, `transform`, `function→string`) to 
 Protected regions (URLs, emails, code spans, etc.) are shielded before rules run and restored after.
 
 ```typescript
-import { applyRules } from '@yalla/typography-core';
+import { applyRules } from '@nkardaz/typography-core';
 
 const result = applyRules('Hello -- world', 'en', { logs: false });
 ```
@@ -83,9 +83,9 @@ Must be called **after** `applyRules` + `joinNodes`/`splitNodes` have already ha
 string-phase processing on the same text nodes.
 
 ```typescript
-import { applyRules, applyNodeRules } from '@yalla/typography-core';
-import { joinNodes, splitNodes } from '@yalla/typography-rules/helpers';
-import type { ElementNode, TextNode } from '@yalla/typography-rules';
+import { applyRules, applyNodeRules } from '@nkardaz/typography-core';
+import { joinNodes, splitNodes } from '@nkardaz/typography-rules/helpers';
+import type { ElementNode, TextNode } from '@nkardaz/typography-rules';
 
 const textNodes = element.children.filter((c): c is TextNode => c.type === 'text');
 
@@ -123,8 +123,8 @@ attribute, that value is used for the element's subtree; otherwise the parent's 
 inherited. This mirrors the `lang` attribute semantics of HTML.
 
 ```typescript
-import { processElement } from '@yalla/typography-core';
-import type { ElementNode } from '@yalla/typography-rules';
+import { processElement } from '@nkardaz/typography-core';
+import type { ElementNode } from '@nkardaz/typography-rules';
 
 // Process an entire element tree with a base locale
 processElement(rootElement, 'en', { logs: false });
@@ -142,7 +142,7 @@ processElement(rootElement, 'en', { logs: false });
 
 Locale attribute priority: `lang` → `language` → `locale` → inherited.
 
-> `processElement` works with `ElementNode` from `@yalla/typography-rules`. For vanilla DOM,
+> `processElement` works with `ElementNode` from `@nkardaz/typography-rules`. For vanilla DOM,
 > write a thin adapter that reads `element.getAttribute('lang')` and maps DOM nodes to
 > `ElementNode` — the pipeline logic is identical.
 
@@ -154,7 +154,7 @@ Resolves a locale string from a parsed frontmatter object.
 Checks keys in order: `locale` → `lang` → `language`.
 
 ```typescript
-import { getFrontmatterLocale } from '@yalla/typography-core';
+import { getFrontmatterLocale } from '@nkardaz/typography-core';
 
 const locale = getFrontmatterLocale({ lang: 'ru' }); // → 'ru'
 ```
@@ -166,7 +166,7 @@ const locale = getFrontmatterLocale({ lang: 'ru' }); // → 'ru'
 Emits a prefixed `console.warn` if `showLogs` is `true`.
 
 ```typescript
-import { warning } from '@yalla/typography-core';
+import { warning } from '@nkardaz/typography-core';
 
 warning('No rules registered for locale “is”', config.logs);
 ```
@@ -180,7 +180,7 @@ Handles config merging, default resolution, and `initRules` — so the plugin
 author only provides the handler logic.
 
 ```typescript
-import { createTypographyPlugin } from '@yalla/typography-core';
+import { createTypographyPlugin } from '@nkardaz/typography-core';
 
 export const myPlugin = createTypographyPlugin({
   defaultOptions: {
@@ -212,16 +212,16 @@ factory defaults  ←  createTypographyPlugin defaultOptions  ←  user options
 
 ```typescript
 // Functions
-export { initRules } from '@yalla/typography-core';
-export { applyRules } from '@yalla/typography-core';
-export { applyNodeRules } from '@yalla/typography-core';
-export { processElement } from '@yalla/typography-core';
-export { getFrontmatterLocale } from '@yalla/typography-core';
-export { warning } from '@yalla/typography-core';
-export { createTypographyPlugin } from '@yalla/typography-core';
+export { initRules } from '@nkardaz/typography-core';
+export { applyRules } from '@nkardaz/typography-core';
+export { applyNodeRules } from '@nkardaz/typography-core';
+export { processElement } from '@nkardaz/typography-core';
+export { getFrontmatterLocale } from '@nkardaz/typography-core';
+export { warning } from '@nkardaz/typography-core';
+export { createTypographyPlugin } from '@nkardaz/typography-core';
 
 // Types
-export type { TypographyCoreOptions, ResolvedCoreConfig, PluginFactory } from '@yalla/typography-core';
+export type { TypographyCoreOptions, ResolvedCoreConfig, PluginFactory } from '@nkardaz/typography-core';
 ```
 
 ---
@@ -233,7 +233,7 @@ import type {
   TypographyCoreOptions,
   ResolvedCoreConfig,
   PluginFactory,
-} from '@yalla/typography-core';
+} from '@nkardaz/typography-core';
 ```
 
 ### `TypographyCoreOptions`
@@ -252,8 +252,8 @@ export interface TypographyCoreOptions {
 
 | Option                | Type                   | Default | Description                                                                 |
 | --------------------- | ---------------------- | ------- | --------------------------------------------------------------------------- |
-| `initTypographyRules` | `boolean`              | `true`  | Register built-in typography rules from `@yalla/typography-rules`           |
-| `initMarkupRules`     | `boolean`              | `false` | Register built-in markup rules from `@yalla/typography-rules`               |
+| `initTypographyRules` | `boolean`              | `true`  | Register built-in typography rules from `@nkardaz/typography-rules`           |
+| `initMarkupRules`     | `boolean`              | `false` | Register built-in markup rules from `@nkardaz/typography-rules`               |
 | `locale`              | `string`               | `'en'`  | Default locale for rule selection                                           |
 | `plugins`             | `(() => () => void)[]` | `[]`    | Custom rule plugins. Each is a factory returning a thunk: `() => () => void` |
 | `logs`                | `boolean`              | `false` | Emit warnings for missing locales and rule errors                           |
@@ -279,7 +279,7 @@ export interface PluginFactory<TOptions extends TypographyCoreOptions, TTree> {
 Extend `TypographyCoreOptions` with your own fields and pass a typed factory:
 
 ```typescript
-import { createTypographyPlugin, type TypographyCoreOptions } from '@yalla/typography-core';
+import { createTypographyPlugin, type TypographyCoreOptions } from '@nkardaz/typography-core';
 import { myRules } from './rules';
 
 interface MyPluginOptions extends TypographyCoreOptions {
@@ -317,13 +317,13 @@ Operates on raw text; protected regions (URLs, code, etc.) are shielded automati
 Expands text nodes into mixed text/element trees (e.g. wrapping `H[^2]O` into `H<sup>2</sup>O`).
 Must run after phase 1 because node expansion on unsettled text produces incorrect results.
 
-The helpers `joinNodes` / `splitNodes` from `@yalla/typography-rules/helpers` bridge sibling text
+The helpers `joinNodes` / `splitNodes` from `@nkardaz/typography-rules/helpers` bridge sibling text
 nodes into a single string before phase 1, so rules can see context across node boundaries.
 
 For most cases `processElement` handles both phases and full traversal automatically:
 
 ```typescript
-import { processElement } from '@yalla/typography-core';
+import { processElement } from '@nkardaz/typography-core';
 
 processElement(rootElement, 'en', { logs: false });
 ```
@@ -332,9 +332,9 @@ When building a custom plugin that needs finer control, the two phases can be ca
 This is exactly what `processElement` does internally at each level:
 
 ```typescript
-import { joinNodes, splitNodes } from '@yalla/typography-rules/helpers';
-import { applyRules, applyNodeRules } from '@yalla/typography-core';
-import type { ElementNode, TextNode } from '@yalla/typography-rules';
+import { joinNodes, splitNodes } from '@nkardaz/typography-rules/helpers';
+import { applyRules, applyNodeRules } from '@nkardaz/typography-core';
+import type { ElementNode, TextNode } from '@nkardaz/typography-rules';
 
 function processLevel(element: ElementNode, locale: string, config: ResolvedCoreConfig) {
   const lang =

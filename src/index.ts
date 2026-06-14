@@ -12,8 +12,8 @@ import {
 	type Node,
 	type ElementNode,
 	type TextNode,
-} from '@yalla/typography-rules';
-import { joinNodes, protect, splitNodes, unprotect } from '@yalla/typography-rules/helpers';
+} from '@nkardaz/typography-rules';
+import { joinNodes, protect, splitNodes, unprotect } from '@nkardaz/typography-rules/helpers';
 
 import type { ResolvedCoreConfig } from './types';
 export * from './factory';
@@ -33,7 +33,7 @@ export function initRules(config: ResolvedCoreConfig): void {
 
 export function warning(message: string, showLogs: boolean): void {
 	if (showLogs) {
-		console.warn(`[@yalla/typography] ${message}`);
+		console.warn(`[@nkardaz/typography] ${message}`);
 	}
 }
 
@@ -73,7 +73,7 @@ export function applyRules(
 
 	for (const item of rules) {
 		if (!item?.kind) {
-			if (config.logs) console.warn('[@yalla/typography] Skipping invalid rule:', item);
+			if (config.logs) console.warn('[@nkardaz/typography] Skipping invalid rule:', item);
 			continue;
 		}
 
@@ -104,7 +104,7 @@ export function applyRules(
 			}
 		} catch (err) {
 			if (config.logs)
-				console.warn('[@yalla/typography] Rule threw an error, skipping:', item, err);
+				console.warn('[@nkardaz/typography] Rule threw an error, skipping:', item, err);
 		}
 	}
 
@@ -181,7 +181,7 @@ export function applyNodeRules(
 					}
 				} catch (err) {
 					if (config.logs)
-						console.warn('[@yalla/typography] Node rule threw an error, skipping:', rule, err);
+						console.warn('[@nkardaz/typography] Node rule threw an error, skipping:', rule, err);
 					next.push(node);
 					continue;
 				}
