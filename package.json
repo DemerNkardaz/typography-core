@@ -1,6 +1,6 @@
 {
   "name": "@nkardaz/typography-core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Common core for @nkardaz typography plugins",
   "license": "MIT",
   "author": "Yalla Nkardaz",
@@ -66,6 +66,6 @@
     "vitest": "^4.1.8"
   },
   "dependencies": {
-    "@nkardaz/typography-rules": "1.0.0"
+    "@nkardaz/typography-rules": "^1.0.1"
   }
 }
