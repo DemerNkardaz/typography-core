@@ -1,6 +1,6 @@
 {
   "name": "@nkardaz/typography-core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Common core for @nkardaz typography plugins",
   "license": "MIT",
   "author": "Yalla Nkardaz",
@@ -22,17 +22,15 @@
     "url": "https://github.com/DemerNkardaz/typography-core/issues"
   },
   "type": "module",
-  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.mjs"
     }
   },
-  "bundleSizeLimit": 20480,
+  "bundleSizeLimit": 10240,
   "sideEffects": false,
   "engines": {
     "node": ">=24.0.0"
@@ -66,6 +64,6 @@
     "vitest": "^4.1.8"
   },
   "dependencies": {
-    "@nkardaz/typography-rules": "^1.0.1"
+    "@nkardaz/typography-rules": "^1.0.3"
   }
 }

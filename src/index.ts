@@ -19,6 +19,9 @@ import type { ResolvedCoreConfig } from './types';
 export * from './factory';
 export type * from './types';
 
+import { createTypographyPlugin } from './factory';
+export default createTypographyPlugin;
+
 export function initRules(config: ResolvedCoreConfig): void {
 	if (config.initTypographyRules) {
 		initTypographyRules();

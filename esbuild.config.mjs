@@ -25,16 +25,8 @@ const resultMJS = await build({
 	outfile: 'dist/index.mjs',
 	external: ['@nkardaz/typography-rules'],
 });
-const resultCJS = await build({
-	...common,
-	entryPoints: ['src/index.ts'],
-	format: 'cjs',
-	outfile: 'dist/index.cjs',
-	external: ['@nkardaz/typography-rules'],
-});
 
 await writeFile('dist/meta-esm.json', JSON.stringify(resultMJS.metafile));
-await writeFile('dist/meta-cjs.json', JSON.stringify(resultCJS.metafile));
 
 function getDirSize(dir) {
 	return readdirSync(dir).reduce((sum, f) => {
